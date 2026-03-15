@@ -4,10 +4,10 @@ from fastapi import APIRouter, Depends, Header, HTTPException
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
-from app.db import get_db
-from app.models import Order, Reservation
-from app.redis_client import redis_client
-from app.schemas import CheckoutRequest, CheckoutResponse, OrderResponse
+from shared.database.db import get_db
+from shared.models.models import Order, Reservation
+from shared.redis.redis_client import redis_client
+from api.app.schemas import CheckoutRequest, CheckoutResponse, OrderResponse
 
 router = APIRouter(prefix="/checkout", tags=["checkout"])
 

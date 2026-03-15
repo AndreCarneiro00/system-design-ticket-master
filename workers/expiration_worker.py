@@ -5,8 +5,8 @@ from datetime import datetime
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from app.models import Reservation
-from app.redis_client import increment_stock
+from shared.models.models import Reservation
+from shared.redis.redis_client import increment_stock
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 EXPIRATION_WORKER_INTERVAL_SECONDS = int(
@@ -66,7 +66,7 @@ def expire_reservations():
 
 
 def main():
-    print("Expiration worker iniciado.")
+    print("Expiration workers iniciado.")
 
     while True:
         expire_reservations()

@@ -8,8 +8,8 @@ import redis
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from app.models import Order, Reservation
-from app.redis_client import increment_stock
+from shared.models.models import Order, Reservation
+from shared.redis.redis_client import increment_stock
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 

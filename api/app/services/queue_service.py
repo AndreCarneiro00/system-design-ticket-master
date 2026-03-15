@@ -3,7 +3,7 @@ import os
 import uuid
 from datetime import datetime, timedelta, UTC
 
-from app.redis_client import redis_client
+from shared.redis.redis_client import redis_client
 
 ACTIVE_EVENTS_KEY = "queue:active_events"
 QUEUE_PURCHASE_WINDOW_SECONDS = int(os.getenv("QUEUE_PURCHASE_WINDOW_SECONDS", 120))

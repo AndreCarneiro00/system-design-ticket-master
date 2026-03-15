@@ -1,6 +1,6 @@
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime, Boolean
-from app.db import Base
+from shared.database.db import Base
 
 
 class Event(Base):

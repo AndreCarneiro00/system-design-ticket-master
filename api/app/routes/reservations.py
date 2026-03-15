@@ -4,11 +4,11 @@ from datetime import datetime, timedelta
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app.db import get_db
-from app.models import Event, Reservation
-from app.redis_client import redis_client, decrement_if_available
-from app.schemas import ReservationRequest, ReservationResponse
-from app.queue_service import consume_ready_access
+from shared.database.db import get_db
+from shared.models.models import Event, Reservation
+from shared.redis.redis_client import redis_client, decrement_if_available
+from api.app.schemas import ReservationRequest, ReservationResponse
+from api.app.services.queue_service import consume_ready_access
 
 router = APIRouter(prefix="/reservations", tags=["reservations"])
 

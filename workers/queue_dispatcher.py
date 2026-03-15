@@ -3,7 +3,7 @@ import os
 import time
 from datetime import datetime, UTC
 
-from app.queue_service import (
+from api.app.services.queue_service import (
     active_key,
     get_active_events,
     mark_token_expired,
@@ -12,7 +12,7 @@ from app.queue_service import (
     unregister_active_event_if_empty,
     waiting_key,
 )
-from app.redis_client import redis_client
+from shared.redis.redis_client import redis_client
 
 QUEUE_MAX_ACTIVE_USERS = int(os.getenv("QUEUE_MAX_ACTIVE_USERS", 5))
 QUEUE_DISPATCHER_INTERVAL_SECONDS = int(os.getenv("QUEUE_DISPATCHER_INTERVAL_SECONDS", 2))

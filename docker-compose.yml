@@ -4,9 +4,9 @@ services:
       context: .
       dockerfile: docker/api/Dockerfile
     container_name: ticket_api
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    command: uvicorn api.app.main:app --host 0.0.0.0 --port 8000 --reload
     volumes:
-      - ./api:/app
+      - .:/app
     ports:
       - "8000:8000"
     env_file:
@@ -18,12 +18,11 @@ services:
   worker:
     build:
       context: .
-      dockerfile: docker/worker/Dockerfile
-    container_name: ticket_worker
-    command: python worker/payment_worker.py
+      dockerfile: docker/workers/Dockerfile
+    container_name: payment_worker
+    command: python -m workers.payment_worker
     volumes:
-      - ./api:/app
-      - ./worker:/app/worker
+      - .:/app
     env_file:
       - .env
     depends_on:
@@ -33,12 +32,11 @@ services:
   expiration_worker:
     build:
       context: .
-      dockerfile: docker/worker/Dockerfile
+      dockerfile: docker/workers/Dockerfile
     container_name: ticket_expiration_worker
-    command: python worker/expiration_worker.py
+    command: python -m workers.expiration_worker
     volumes:
-      - ./api:/app
-      - ./worker:/app/worker
+      - .:/app
     env_file:
       - .env
     depends_on:
@@ -48,12 +46,11 @@ services:
   queue_dispatcher:
     build:
       context: .
-      dockerfile: docker/worker/Dockerfile
+      dockerfile: docker/workers/Dockerfile
     container_name: ticket_queue_dispatcher
-    command: python worker/queue_dispatcher.py
+    command: python -m workers.queue_dispatcher
     volumes:
-      - ./api:/app
-      - ./worker:/app/worker
+      - .:/app
     env_file:
       - .env
     depends_on:

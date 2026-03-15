@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app.db import get_db
-from app.models import Event
-from app.redis_client import redis_client
-from app.schemas import EventCreateRequest, EventResponse
+from shared.database.db import get_db
+from shared.models.models import Event
+from shared.redis.redis_client import redis_client
+from api.app.schemas import EventCreateRequest, EventResponse
 
 router = APIRouter(prefix="/events", tags=["events"])
 

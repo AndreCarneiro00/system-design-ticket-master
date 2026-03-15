@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 
-from app.queue_service import create_queue_entry, get_queue_status
-from app.schemas import (
+from api.app.services.queue_service import create_queue_entry, get_queue_status
+from api.app.schemas import (
     QueueJoinRequest,
     QueueJoinResponse,
     QueueStatusResponse,

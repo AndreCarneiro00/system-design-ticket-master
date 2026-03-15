@@ -5,6 +5,8 @@ WORKDIR /app
 COPY ./api/requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
-COPY ./api /app
+COPY . /app
+
+ENV PYTHONPATH=/app
 
 EXPOSE 8000
